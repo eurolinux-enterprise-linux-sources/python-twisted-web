@@ -3,7 +3,7 @@
 
 Name:           %{python}-twisted-web
 Version:        12.1.0
-Release:        2%{?dist}
+Release:        4%{?dist}
 Summary:        Twisted web client and server, programmable in Python
 License:        MIT
 URL:            http://twistedmatrix.com/trac/wiki/TwistedWeb
@@ -62,6 +62,12 @@ fi
 %{python_sitearch}/twisted/web/
 
 %changelog
+* Fri Jan 24 2014 Daniel Mach <dmach@redhat.com> - 12.1.0-4
+- Mass rebuild 2014-01-24
+
+* Fri Dec 27 2013 Daniel Mach <dmach@redhat.com> - 12.1.0-3
+- Mass rebuild 2013-12-27
+
 * Sat Jul 21 2012 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 12.1.0-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_18_Mass_Rebuild
 
