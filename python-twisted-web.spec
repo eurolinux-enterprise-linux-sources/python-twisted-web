@@ -3,7 +3,7 @@
 
 Name:           %{python}-twisted-web
 Version:        12.1.0
-Release:        4%{?dist}
+Release:        5%{?dist}
 Summary:        Twisted web client and server, programmable in Python
 License:        MIT
 URL:            http://twistedmatrix.com/trac/wiki/TwistedWeb
@@ -12,6 +12,10 @@ BuildRequires:  %{python}-twisted-core >= %{version}
 BuildRequires:  %{python}-devel
 Requires:       %{python}-twisted-core >= %{version}
 Requires:       SOAPpy
+
+# Fix HTTPoxy CVE-2016-1000111
+# https://httpoxy.org/
+Patch0: CVE-2016-1000111.patch
 
 # a noarch-turned-arch package should not have debuginfo
 %define debug_package %{nil}
@@ -28,6 +32,8 @@ Twisted and Python, but fully able to serve static pages too.
 # Remove spurious shellbangs
 sed -i -e '/^#! *\/usr\/bin\/python/d' twisted/web/test/test_cgi.py
 sed -i -e '/^#! *\/usr\/bin\/python/d' twisted/web/test/test_distrib.py
+
+%patch0 -p1
 
 %build
 %{python} setup.py build
@@ -62,6 +68,10 @@ fi
 %{python_sitearch}/twisted/web/
 
 %changelog
+* Fri Aug 12 2016 Charalampos Stratakis <cstratak@redhat.com> - 12.1.0-5
+- Fix HTTPoxy CVE-2016-1000111
+Resolves: rhbz#1358791
+
 * Fri Jan 24 2014 Daniel Mach <dmach@redhat.com> - 12.1.0-4
 - Mass rebuild 2014-01-24
 
